@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function OurServices() {
   const styles = {
@@ -40,13 +41,19 @@ function OurServices() {
     <div>
       <div style={styles.container}>
         <div style={styles.scrollWrapper}>
-          <span style={styles.scrollText}>
-            SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS |
-          </span>
-          {/* Duplicate for seamless scroll */}
-          <span style={styles.scrollText}>
-            SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS |
-          </span>
+          {/* Original Scroll Item converted to Link */}
+          <Link to="/shopcustoms" style={{ textDecoration: 'none' }}>
+            <span style={styles.scrollText}>
+              SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS |
+            </span>
+          </Link>
+
+          {/* Duplicate for seamless scroll converted to Link */}
+          <Link to="/shopcustoms" style={{ textDecoration: 'none' }}>
+            <span style={styles.scrollText}>
+              SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS | SHOP CUSTOM DESIGNS |
+            </span>
+          </Link>
         </div>
       </div>
       <style>{styles.keyframes}</style>

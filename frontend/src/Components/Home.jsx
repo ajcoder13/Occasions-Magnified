@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import bannerImage from "../assets/Banner copy.jpg";
 import Header from "./Header";
 import OMAG from "./OMAG";
@@ -11,19 +11,30 @@ import redBackground from "../assets/dark-red-brown-background.jpg";
 import BG01 from "../assets/BG-01.png";
 
 function Home() {
-    const navigate = useNavigate();
-    const [hover, setHover] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-    const HoverData = (
-  <div>
-    <span >YOUR DREAM DESIGN,</span><br />
-    <span >JUST A CLICK AWAY</span><br />
-    <div style={{ fontSize: "1.2rem", fontFamily:"Poppins", fontStyle:"italic", lineHeight: "1.2", marginTop:"1em", }}>
-  <div>Browse through our past creations</div>
-  <div>and place your custom order easily.</div>
-</div>
-</div>
-);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [hover, setHover] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  useEffect(() => {
+    if (location.state && location.state.targetId) {
+      const section = document.getElementById(location.state.targetId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+      // Optional: Clear state to prevent scrolling on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+  const HoverData = (
+    <div>
+      <span >YOUR DREAM DESIGN,</span><br />
+      <span >JUST A CLICK AWAY</span><br />
+      <div style={{ fontSize: "1.2rem", fontFamily: "Poppins", fontStyle: "italic", lineHeight: "1.2", marginTop: "1em", }}>
+        <div>Browse through our past creations</div>
+        <div>and place your custom order easily.</div>
+      </div>
+    </div>
+  );
 
   const onHover = (e) => {
     e.preventDefault();
@@ -35,20 +46,20 @@ function Home() {
     e.preventDefault(); // turn false
     setHover(false);
   };
-    const handleNavigate = () => {
-      navigate("/explore");
-    };
-   
+  const handleNavigate = () => {
+    navigate("/explore");
+  };
+
 
   return (
     <div style={styles.container}>
-      <Header  />
+      <Header />
       <img src={bannerImage} alt="Banner" style={styles.image} />
 
       <div style={styles.textContainer}>
         <div style={styles.crafting}>
           Crafting Memories through</div>
-          <span style={styles.elegantDesigns}>Elegant Designs</span>
+        <span style={styles.elegantDesigns}>Elegant Designs</span>
 
         <button
           style={{
@@ -78,7 +89,7 @@ function Home() {
         <video
           style={{ ...styles.video, opacity: hover ? 0.4 : 1 }}
           onMouseEnter={(e) => onHover(e)}
-        onMouseLeave={(e) => onHoverOver(e)}
+          onMouseLeave={(e) => onHoverOver(e)}
           src={serviceVideo}
           autoPlay
           loop
@@ -92,11 +103,11 @@ function Home() {
         <Founder />
       </section>
       <div style={styles.testimonial}>
-          <div style={styles.line} > What Our Clients Say .... </div>
-          <div style={styles.white}>  </div>
+        <div style={styles.line} > What Our Clients Say .... </div>
+        <div style={styles.white}>  </div>
       </div>
     </div>
-    
+
   );
 }
 
@@ -171,62 +182,62 @@ const styles = {
     backgroundImage: `url(${Background})`,
   },
   videoContainer: {
-      width: '100vw',
-      height: '73vh',
-      overflow: 'hidden',
-      backgroundColor: '#000',
-      position: 'relative', // to position overlay text correctly
-    },
-    video: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      transition: 'opacity 0.5s ease',// to position overlay text correctly
-    },
+    width: '100vw',
+    height: '73vh',
+    overflow: 'hidden',
+    backgroundColor: '#000',
+    position: 'relative', // to position overlay text correctly
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    transition: 'opacity 0.5s ease',// to position overlay text correctly
+  },
 
-    overlayText: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      textAlign:"center",
-      fontWeight:"500",
-      color: '#ffffff',
-      wordSpacing:"0.1em",
-      letterSpacing:"0.05em",
-      fontSize: '3.5em',
-      fontFamily: 'Anton, sans-serif',
-      transition: 'opacity 0.5s ease',
-      zIndex: 1,
-      pointerEvents: 'none', // prevent blocking video events
-    },
-    founderSection: {
-      height: "110vh",
-      width: "100vw",
-      // light cream shade
-    },
-    testimonial:{
-      height:"100vh",
-      width:"100vw",
-    },
-    line:{
-     width: "100vw",
-  height: "20vh",                      // how much space you want to show
-  backgroundImage: `url(${redBackground})`,
-  backgroundPosition: "bottom",
-  backgroundSize: "100% 1000%",        // stretches image 10x vertically
-  backgroundRepeat: "no-repeat",
-  color:"#e5dcc8",
-  fontSize:"3em",
-  letterSpacing:"0.3em",
-  fontFamily:"open sans",
-  fontStyle:"italic",
-  padding:"12vh 0vw 0vw 3vw",
-    },
-  white:{
-    display:"block",
-    backgroundImage:`url(${BG01})`,
-    height:"100vh",
+  overlayText: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: "center",
+    fontWeight: "500",
+    color: '#ffffff',
+    wordSpacing: "0.1em",
+    letterSpacing: "0.05em",
+    fontSize: '3.5em',
+    fontFamily: 'Anton, sans-serif',
+    transition: 'opacity 0.5s ease',
+    zIndex: 1,
+    pointerEvents: 'none', // prevent blocking video events
+  },
+  founderSection: {
+    height: "110vh",
+    width: "100vw",
+    // light cream shade
+  },
+  testimonial: {
+    height: "100vh",
+    width: "100vw",
+  },
+  line: {
+    width: "100vw",
+    height: "20vh",                      // how much space you want to show
+    backgroundImage: `url(${redBackground})`,
+    backgroundPosition: "bottom",
+    backgroundSize: "100% 1000%",        // stretches image 10x vertically
+    backgroundRepeat: "no-repeat",
+    color: "#e5dcc8",
+    fontSize: "3em",
+    letterSpacing: "0.3em",
+    fontFamily: "open sans",
+    fontStyle: "italic",
+    padding: "12vh 0vw 0vw 3vw",
+  },
+  white: {
+    display: "block",
+    backgroundImage: `url(${BG01})`,
+    height: "100vh",
   }
 
 };

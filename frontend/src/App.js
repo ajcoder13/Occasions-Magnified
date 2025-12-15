@@ -7,6 +7,7 @@ import Founder from "./Components/Founder"; // assuming ServicesPage.jsx exists
 import Testimonial from "./Components/Testimonial";
 import Explore from "./Components/Explore";
 import Omag_main from "./Components/Omag_main";
+import ShopCustoms from "./Components/ShopCustoms";
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/omagg" element={<OMAG />} />
         <Route path="/omag" element={<Omag_main />} />
         <Route path="/testimonial" element={<Testimonial />} />
+        <Route path="/shopcustoms" element={<ShopCustoms />} />
         <Route path="/contact" element={<div>Contact Us Page</div>} />
       </Routes>
     </Router>
