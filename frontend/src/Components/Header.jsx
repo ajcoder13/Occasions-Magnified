@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Added useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom"; // 1. Import useNavigate
 import redBackground from "../assets/dark-red-brown-background.jpg";
 import Logo from "../assets/Logo_Occasions Magnified.png";
 import LogoWhite from "../assets/Logo Occasions Magnified.png";
 
 function Header(props) {
   const location = useLocation();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); // 2. Create navigate hook
   const isExplore = location.pathname === '/explore';
   const isOmag = location.pathname === '/omag';
   const [header, setHeader] = useState(false);
@@ -21,23 +21,23 @@ function Header(props) {
 
   window.addEventListener('scroll', changeBackground);
 
-  // --- NEW: Function to handle scrolling to About Us ---
+  // 3. ADD THIS: Function to handle scrolling
   const handleScrollToFounder = (e) => {
     e.preventDefault();
     if (location.pathname === "/") {
-      // If already on Home, just scroll
+      // If we are already on Home, just find the ID and scroll
       const section = document.getElementById("founder");
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // If not on Home, navigate to Home and pass the target ID in state
+      // If we are NOT on Home, go to home and tell it to scroll to 'founder'
       navigate("/", { state: { targetId: "founder" } });
     }
   };
-  // ----------------------------------------------------
 
   const styles = {
+    // ... (Your existing styles remain fine)
     header: {
       position: "fixed",
       top: 0,
@@ -72,7 +72,7 @@ function Header(props) {
       textDecoration: "none",
       fontSize: "1.2em",
       letterSpacing: "0.05em",
-      cursor: "pointer", // Ensure it looks clickable
+      cursor: "pointer", // Added cursor pointer
     },
   };
 
@@ -82,7 +82,7 @@ function Header(props) {
       <nav style={styles.nav}>
         <Link to="/" style={styles.navLink}>HOME</Link>
 
-        {/* Updated About Us Link to use the handler */}
+        {/* 4. UPDATE THIS LINK: Use the handler instead of to="/aboutus" */}
         <Link to="/" onClick={handleScrollToFounder} style={styles.navLink}>ABOUT US</Link>
 
         <Link to="/service" style={styles.navLink}>SERVICES</Link>

@@ -8,6 +8,7 @@ import Testimonial from "./Components/Testimonial";
 import Explore from "./Components/Explore";
 import Omag_main from "./Components/Omag_main";
 import ShopCustoms from "./Components/ShopCustoms";
+import ShopMagazines from "./Components/ShopMagazines";
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/omag" element={<Omag_main />} />
         <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/shopcustoms" element={<ShopCustoms />} />
+        <Route path="/shopmagazines" element={<ShopMagazines />} />
         <Route path="/contact" element={<div>Contact Us Page</div>} />
       </Routes>
     </Router>

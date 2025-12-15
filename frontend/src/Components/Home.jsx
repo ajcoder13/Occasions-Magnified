@@ -99,7 +99,7 @@ function Home() {
       </div>
 
       <OurServices />
-      <section style={styles.founderSection}>
+      <section id="founder" style={styles.founderSection}>
         <Founder />
       </section>
       <div style={styles.testimonial}>
